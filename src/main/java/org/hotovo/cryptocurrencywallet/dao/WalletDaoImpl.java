@@ -34,11 +34,6 @@ public class WalletDaoImpl implements WalletDao {
     }
 
     @Override
-    public void transferValuesBetweenTwoWallets() {
-
-    }
-
-    @Override
     public List<Wallet> findAll() {
         return new ArrayList(wallets.values());
     }

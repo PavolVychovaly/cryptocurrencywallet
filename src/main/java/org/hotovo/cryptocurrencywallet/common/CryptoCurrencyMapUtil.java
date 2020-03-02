@@ -37,6 +37,15 @@ public class CryptoCurrencyMapUtil {
         currencyMap.put("ZEC", "Zcash");
         currencyMap.put("BCH", "Bitcoin Cash");
         currencyMap.put("EOS", "EOS.IO");
+        currencyMap.put("BSV", "Bitcoin SV");
+        currencyMap.put("BNB", "Binance Coin");
+        currencyMap.put("XTZ", "Tezos");
+        currencyMap.put("LINK", "Chainlink");
+        currencyMap.put("ADA", "Cardano");
+        currencyMap.put("TRX", "TRON");
+        currencyMap.put("HT", "Huobi Token");
+        currencyMap.put("LEO", "UNUS SED LEO");
+        currencyMap.put("LEO", "UNUS SED LEO");
     }
 
     public static String getCurrencyName(String code) {

@@ -6,7 +6,7 @@ public class WalletDto {
     private Long id;
     private String name;
     private BigDecimal amount;
-    private String cryptoCurrencySymbol;
+    private String currencySymbol;
 
     public Long getId() {
         return id;
@@ -32,12 +32,11 @@ public class WalletDto {
         this.amount = amount;
     }
 
-    public String getCryptoCurrencySymbol() {
-        return cryptoCurrencySymbol;
+    public String getCurrencySymbol() {
+        return currencySymbol;
     }
 
-    public void setCryptoCurrencySymbol(String cryptoCurrencySymbol) {
-        this.cryptoCurrencySymbol = cryptoCurrencySymbol;
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
     }
-
 }

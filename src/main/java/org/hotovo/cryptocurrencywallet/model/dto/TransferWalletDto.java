@@ -2,17 +2,26 @@ package org.hotovo.cryptocurrencywallet.model.dto;
 
 import java.math.BigDecimal;
 
-public class BuyCurrencyDto {
-    private Long walletId;
+public class TransferWalletDto {
+    private Long fromWalletId;
+    private Long toWalletId;
     private BigDecimal amount;
     private String currencyOfAmount;
 
-    public Long getWalletId() {
-        return walletId;
+    public Long getFromWalletId() {
+        return fromWalletId;
     }
 
-    public void setWalletId(Long walletId) {
-        this.walletId = walletId;
+    public void setFromWalletId(Long fromWalletId) {
+        this.fromWalletId = fromWalletId;
+    }
+
+    public Long getToWalletId() {
+        return toWalletId;
+    }
+
+    public void setToWalletId(Long toWalletId) {
+        this.toWalletId = toWalletId;
     }
 
     public BigDecimal getAmount() {

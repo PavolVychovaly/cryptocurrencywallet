@@ -7,6 +7,7 @@ import org.hotovo.cryptocurrencywallet.model.CryptoCurrency;
 import org.hotovo.cryptocurrencywallet.model.Price;
 import org.hotovo.cryptocurrencywallet.model.Wallet;
 import org.hotovo.cryptocurrencywallet.model.dto.BuyCurrencyDto;
+import org.hotovo.cryptocurrencywallet.model.dto.TransferWalletDto;
 import org.hotovo.cryptocurrencywallet.model.dto.WalletDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class WalletServiceImpl implements WalletService {
         BeanUtils.copyProperties(walletDto, wallet);
 
         CryptoCurrency cryptoCurrency = new CryptoCurrency();
-        setCurrencyAndPrices(walletDto.getCryptoCurrencySymbol(), wallet.getAmount(), cryptoCurrency);
+        setCurrencyAndPrices(walletDto.getCurrencySymbol(), wallet.getAmount(), cryptoCurrency);
 
         wallet.setCryptoCurrency(cryptoCurrency);
 
@@ -55,7 +56,7 @@ public class WalletServiceImpl implements WalletService {
         BeanUtils.copyProperties(walletDto, wallet);
 
         CryptoCurrency cryptoCurrency = wallet.getCryptoCurrency();
-        setCurrencyAndPrices(walletDto.getCryptoCurrencySymbol(), wallet.getAmount(), cryptoCurrency);
+        setCurrencyAndPrices(walletDto.getCurrencySymbol(), wallet.getAmount(), cryptoCurrency);
 
         return wallet;
     }
@@ -77,17 +78,27 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public void transferValuesBetweenTwoWallets() {
-        walletDao.transferValuesBetweenTwoWallets();
+    public void transferValuesBetweenTwoWallets(TransferWalletDto dto) {
+        setWalletValuesAfterBuying(dto.getFromWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), true);
+        setWalletValuesAfterBuying(dto.getToWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), false);
     }
 
     @Override
     public Wallet buyCurrency(BuyCurrencyDto dto) {
-        Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(dto.getWalletCurrency(), dto.getBoughtCurrency());
-        BigDecimal currencyForSubstract = dto.getAmount().divide(price.getValue(), 2, RoundingMode.HALF_UP);
+        return setWalletValuesAfterBuying(dto.getWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), true);
+    }
 
-        Wallet wallet = findById(dto.getWalletId());
-        wallet.setAmount(wallet.getAmount().subtract(currencyForSubstract));
+    private Wallet setWalletValuesAfterBuying(Long walletId, BigDecimal amount, String currencyOfAmount, boolean substract) {
+        Wallet wallet = findById(walletId);
+
+        Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(wallet.getCryptoCurrency().getSymbol(), currencyOfAmount);
+        BigDecimal finalAmount = amount.divide(price.getValue(), 2, RoundingMode.HALF_UP);
+
+        if (substract) {
+            wallet.setAmount(wallet.getAmount().subtract(finalAmount));
+        } else {
+            wallet.setAmount(wallet.getAmount().add(finalAmount));
+        }
 
         List<Price> prices = cryptoCurrencyDao.getPricesOfCryptocurrencyInOtherCurrencies(wallet.getCryptoCurrency().getSymbol());
         for (Price price1 : prices) {

@@ -11,7 +11,5 @@ public interface WalletDao {
 
     void delete(Long id);
 
-    void transferValuesBetweenTwoWallets();
-
     List<Wallet> findAll();
 }

@@ -2,6 +2,7 @@ package org.hotovo.cryptocurrencywallet.view;
 
 import org.hotovo.cryptocurrencywallet.model.Wallet;
 import org.hotovo.cryptocurrencywallet.model.dto.BuyCurrencyDto;
+import org.hotovo.cryptocurrencywallet.model.dto.TransferWalletDto;
 import org.hotovo.cryptocurrencywallet.model.dto.WalletDto;
 import org.hotovo.cryptocurrencywallet.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class WalletController {
     }
 
     @PostMapping("/transferValues")
-    public void transferValuesBetweenTwoWallets() {
-        walletService.transferValuesBetweenTwoWallets();
+    public void transferValuesBetweenTwoWallets(@RequestBody TransferWalletDto dto) {
+        walletService.transferValuesBetweenTwoWallets(dto);
     }
 }

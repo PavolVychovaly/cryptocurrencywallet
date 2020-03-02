@@ -1,6 +1,18 @@
-CryptoCurrency Wallet Simulator API
+# CryptoCurrency Wallet Simulator API
 
-aaa
+This is a simple currency wallet application providing a REST
+API that allows operations over currency wallets.
 
+REST API `https://min-api.cryptocompare.com/documentation` is used for obtaining the prices and available symbols of currencies.
 
-bbb
+## Install
+
+    mvn clean install -DskipTests=true
+
+## Run the app
+
+    mvn spring-boot:run
+
+Application is available via Swagger on http://localhost:8080/swagger-ui.html
+
+# REST API

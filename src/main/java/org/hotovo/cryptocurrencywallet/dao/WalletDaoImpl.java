@@ -1,5 +1,6 @@
 package org.hotovo.cryptocurrencywallet.dao;
 
+import org.hotovo.cryptocurrencywallet.common.exception.DataNotFoundException;
 import org.hotovo.cryptocurrencywallet.model.Wallet;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +26,18 @@ public class WalletDaoImpl implements WalletDao {
 
     @Override
     public Wallet findById(Long id) {
-        return wallets.get(id);
+        Wallet wallet = wallets.get(id);
+        if (wallet == null) {
+            throw new DataNotFoundException(String.format("Wallet with ID = %d does not exist.", id));
+        }
+
+        return wallet;
     }
 
     @Override
     public void delete(Long id) {
-        wallets.remove(id);
+        Wallet wallet = findById(id);
+        wallets.remove(wallet.getId());
     }
 
     @Override

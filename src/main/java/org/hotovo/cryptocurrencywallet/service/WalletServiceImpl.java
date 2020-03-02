@@ -50,9 +50,9 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Wallet update(WalletDto walletDto) {
+    public Wallet update(Long id, WalletDto walletDto) {
         // load wallet from static Map from Dao layer
-        Wallet wallet = findById(walletDto.getId());
+        Wallet wallet = findById(id);
         BeanUtils.copyProperties(walletDto, wallet);
 
         CryptoCurrency cryptoCurrency = wallet.getCryptoCurrency();

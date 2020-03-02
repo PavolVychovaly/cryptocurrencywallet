@@ -14,7 +14,7 @@ public interface WalletService {
 
     Wallet create(WalletDto walletDto);
 
-    Wallet update(WalletDto walletDto);
+    Wallet update(Long id, WalletDto walletDto);
 
     void delete(Long id);
 

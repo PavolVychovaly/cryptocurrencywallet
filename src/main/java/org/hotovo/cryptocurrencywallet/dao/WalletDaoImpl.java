@@ -39,11 +39,6 @@ public class WalletDaoImpl implements WalletDao {
     }
 
     @Override
-    public Wallet buyCurrency() {
-        return null;
-    }
-
-    @Override
     public List<Wallet> findAll() {
         return new ArrayList(wallets.values());
     }

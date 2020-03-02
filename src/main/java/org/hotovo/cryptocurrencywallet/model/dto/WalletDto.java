@@ -1,10 +1,12 @@
 package org.hotovo.cryptocurrencywallet.model.dto;
 
+import java.math.BigDecimal;
+
 public class WalletDto {
     private Long id;
     private String name;
+    private BigDecimal amount;
     private String cryptoCurrencySymbol;
-    private Float amount;
 
     public Long getId() {
         return id;
@@ -22,6 +24,14 @@ public class WalletDto {
         this.name = name;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     public String getCryptoCurrencySymbol() {
         return cryptoCurrencySymbol;
     }
@@ -30,11 +40,4 @@ public class WalletDto {
         this.cryptoCurrencySymbol = cryptoCurrencySymbol;
     }
 
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
 }

@@ -1,6 +1,7 @@
 package org.hotovo.cryptocurrencywallet.view;
 
 import org.hotovo.cryptocurrencywallet.model.Wallet;
+import org.hotovo.cryptocurrencywallet.model.dto.BuyCurrencyDto;
 import org.hotovo.cryptocurrencywallet.model.dto.WalletDto;
 import org.hotovo.cryptocurrencywallet.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,8 @@ public class WalletController {
     }
 
     @PostMapping("/buyCurrency")
-    public Wallet buyCurrency() {
-        return walletService.buyCurrency();
+    public Wallet buyCurrency(@RequestBody BuyCurrencyDto dto) {
+        return walletService.buyCurrency(dto);
     }
 
     @PostMapping("/transferValues")

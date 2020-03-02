@@ -1,8 +1,10 @@
 package org.hotovo.cryptocurrencywallet.model;
 
+import java.math.BigDecimal;
+
 public class Price {
     private String code;
-    private Float value;
+    private BigDecimal value;
 
     public String getCode() {
         return code;
@@ -12,11 +14,11 @@ public class Price {
         this.code = code;
     }
 
-    public Float getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Float value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 }

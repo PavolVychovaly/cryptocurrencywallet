@@ -1,9 +1,12 @@
 package org.hotovo.cryptocurrencywallet.model;
 
+import java.math.BigDecimal;
+
 public class Wallet {
 
     private Long id;
     private String name;
+    private BigDecimal amount;
     private CryptoCurrency cryptoCurrency;
 
     public Long getId() {
@@ -20,6 +23,14 @@ public class Wallet {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     public CryptoCurrency getCryptoCurrency() {

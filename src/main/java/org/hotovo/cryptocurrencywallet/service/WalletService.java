@@ -1,6 +1,7 @@
 package org.hotovo.cryptocurrencywallet.service;
 
 import org.hotovo.cryptocurrencywallet.model.Wallet;
+import org.hotovo.cryptocurrencywallet.model.dto.BuyCurrencyDto;
 import org.hotovo.cryptocurrencywallet.model.dto.WalletDto;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface WalletService {
 
     void transferValuesBetweenTwoWallets();
 
-    Wallet buyCurrency();
+    Wallet buyCurrency(BuyCurrencyDto dto);
 
     List<Wallet> findAll();
 }

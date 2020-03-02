@@ -13,7 +13,5 @@ public interface WalletDao {
 
     void transferValuesBetweenTwoWallets();
 
-    Wallet buyCurrency();
-
     List<Wallet> findAll();
 }

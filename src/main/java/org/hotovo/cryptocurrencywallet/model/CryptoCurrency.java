@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CryptoCurrency {
     private String symbol;
+    private String name;
     private List<Price> prices;
 
     public String getSymbol() {
@@ -12,6 +13,14 @@ public class CryptoCurrency {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Price> getPrices() {

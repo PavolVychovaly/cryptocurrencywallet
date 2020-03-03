@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,14 +42,14 @@ public class WalletController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Wallet> create(@RequestBody WalletDto walletDto) {
+    public ResponseEntity<Wallet> create(@Valid @RequestBody WalletDto walletDto) {
 
         return ResponseEntity.ok(walletService.create(walletDto));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Wallet> update(@PathVariable("id") Long id, @RequestBody WalletDto walletDto) {
+    public ResponseEntity<Wallet> update(@PathVariable("id") Long id, @Valid @RequestBody WalletDto walletDto) {
         return ResponseEntity.ok(walletService.update(id, walletDto));
     }
 
@@ -60,12 +61,12 @@ public class WalletController {
     }
 
     @PostMapping("/buyCurrency")
-    public Wallet buyCurrency(@RequestBody BuyCurrencyDto dto) {
+    public Wallet buyCurrency(@Valid @RequestBody BuyCurrencyDto dto) {
         return walletService.buyCurrency(dto);
     }
 
     @PostMapping("/transferValues")
-    public void transferValuesBetweenTwoWallets(@RequestBody TransferWalletDto dto) {
+    public void transferValuesBetweenTwoWallets(@Valid @RequestBody TransferWalletDto dto) {
         walletService.transferValuesBetweenTwoWallets(dto);
     }
 }

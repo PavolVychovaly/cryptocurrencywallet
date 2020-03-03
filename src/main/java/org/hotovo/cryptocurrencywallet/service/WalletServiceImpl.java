@@ -90,10 +90,6 @@ public class WalletServiceImpl implements WalletService {
         return setWalletValuesAfterBuying(dto.getWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), true);
     }
 
-    public static String currencyFormat(BigDecimal n) {
-        return NumberFormat.getCurrencyInstance().format(n);
-    }
-
     private Wallet setWalletValuesAfterBuying(Long walletId, BigDecimal amount, String currencyOfAmount, boolean substract) {
         Wallet wallet = findById(walletId);
         String walletCurrencySymbol = wallet.getCryptoCurrency().getSymbol();

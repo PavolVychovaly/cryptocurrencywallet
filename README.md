@@ -29,6 +29,7 @@ The REST API to the example app is described below.
 
 ### Response
 
+```
 [
   {
     "name": "string",
@@ -41,3 +42,4 @@ The REST API to the example app is described below.
     "symbol": "string"
   }
 ]
+```

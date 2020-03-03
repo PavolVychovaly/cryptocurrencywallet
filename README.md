@@ -8,7 +8,7 @@ The prices in JSON response are configurable via property `price.list` in `appli
 
 The cryptocurrencies in JSON response of `Get All CryptoCurrencies Service` are configurable via property `cryptoCurrencySymbol.list` in `application.properties` file.
 
-On create and update wallet, buy currency and transfer values for two wallets service is called remote REST API from `https://min-api.cryptocompare.com/documentation` to calculate prices of specified currency and they are returned in JSON response.
+On every create and update wallet, buy currency and transfer values for two wallets service is called remote REST API from `https://min-api.cryptocompare.com/documentation` to calculate prices of specified currency and they are returned in JSON response.
 
 ## Install
 

@@ -48,11 +48,9 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 `POST /wallet/`
 
-    curl --header "Content-Type: application/json" --request POST 
-    --data '{"name": "Bitcoin Wallet","currencySymbol": "BTC","amount": "10"}' http://localhost:8080/wallet
+    curl --header "Content-Type: application/json" --request POST --data '{"name": "Bitcoin Wallet","currencySymbol": "BTC","amount":   "10"}' http://localhost:8080/wallet
 
-    curl --header "Content-Type: application/json" --request POST 
-    --data '{"name": "Ripple Wallet","currencySymbol": "XRP","amount": "200"}' http://localhost:8080/wallet
+    curl --header "Content-Type: application/json" --request POST --data '{"name": "Ripple Wallet","currencySymbol": "XRP","amount": "200"}' http://localhost:8080/wallet
     
 ### Response
 
@@ -108,8 +106,7 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 `PUT /wallet/id`
 
-    curl --header "Content-Type: application/json" --request PUT
-    --data '{"name": "Bitcoin Wallet with new name","currencySymbol": "ETH","amount": "300"}' http://localhost:8080/wallet/1
+    curl --header "Content-Type: application/json" --request PUT --data '{"name": "Bitcoin Wallet with new name","currencySymbol": "ETH","amount": "300"}' http://localhost:8080/wallet/1
     
 ### Response
 
@@ -181,8 +178,7 @@ Wallet with ID XY successfully deleted.
 
 `POST /wallet/buyCurrency`
 
-    curl --header "Content-Type: application/json" --request POST 
-    --data '{"walletId": "1","amount": "100","currencyOfAmount": "ETH"}' http://localhost:8080/wallet/buyCurrency
+    curl --header "Content-Type: application/json" --request POST --data '{"walletId": "1","amount": "100","currencyOfAmount": "ETH"}' http://localhost:8080/wallet/buyCurrency
     
 ### Response
 
@@ -210,5 +206,4 @@ Wallet with ID XY successfully deleted.
 
 `POST /wallet/transferValues`
 
-    curl --header "Content-Type: application/json" --request POST 
-    --data '{"fromWalletId": "1","toWalletId": "2","amount": "100","currencyOfAmount": "ETH"}'       http://localhost:8080/wallet/transferValues
+    curl --header "Content-Type: application/json" --request POST --data '{"fromWalletId": "1","toWalletId": "2","amount": "100","currencyOfAmount": "ETH"}' http://localhost:8080/wallet/transferValues

@@ -30,8 +30,8 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
     @Value("${cryptocurrencymulti.api.url}")
     private String cryptocurrencymultiApiUrl;
 
-    @Value("${currencyCode.list}")
-    private List<String> currencyCodeList;
+    @Value("${price.list}")
+    private List<String> priceList;
 
     @Value("${cryptoCurrencySymbol.list}")
     private List<String> cryptoCurrencySymbolList;
@@ -40,7 +40,7 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
     public List<CryptoCurrency> getAllCryptoCurrencies() {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(cryptocurrencymultiApiUrl)
                 .queryParam("fsyms", String.join(",", cryptoCurrencySymbolList))
-                .queryParam("tsyms", String.join(",", currencyCodeList));
+                .queryParam("tsyms", String.join(",", priceList));
 
         List<CryptoCurrency> result = new ArrayList<>();
         try {
@@ -58,7 +58,7 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
 
     @Override
     public List<Price> getPricesOfCryptocurrencyInOtherCurrencies(String cryptoCurrencySymbol) {
-        return getPricesForCryptoCurrency(cryptoCurrencySymbol, String.join(",", currencyCodeList));
+        return getPricesForCryptoCurrency(cryptoCurrencySymbol, String.join(",", priceList));
     }
 
     @Override

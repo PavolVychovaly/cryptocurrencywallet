@@ -1,6 +1,7 @@
 package org.hotovo.cryptocurrencywallet.service;
 
 import org.hotovo.cryptocurrencywallet.common.CryptoCurrencyMapUtil;
+import org.hotovo.cryptocurrencywallet.common.exception.BuyingCurrencyException;
 import org.hotovo.cryptocurrencywallet.dao.CryptoCurrencyDao;
 import org.hotovo.cryptocurrencywallet.dao.WalletDao;
 import org.hotovo.cryptocurrencywallet.model.CryptoCurrency;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.List;
 
 @Service
@@ -88,19 +90,36 @@ public class WalletServiceImpl implements WalletService {
         return setWalletValuesAfterBuying(dto.getWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), true);
     }
 
+    public static String currencyFormat(BigDecimal n) {
+        return NumberFormat.getCurrencyInstance().format(n);
+    }
+
     private Wallet setWalletValuesAfterBuying(Long walletId, BigDecimal amount, String currencyOfAmount, boolean substract) {
         Wallet wallet = findById(walletId);
+        String walletCurrencySymbol = wallet.getCryptoCurrency().getSymbol();
+        BigDecimal finalAmount = BigDecimal.ZERO;
 
-        Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(wallet.getCryptoCurrency().getSymbol(), currencyOfAmount);
-        BigDecimal finalAmount = amount.divide(price.getValue(), 2, RoundingMode.HALF_UP);
+        // in case of the cryptocurrency symbols are equal, we don't must call remote API service
+        if (substract && walletCurrencySymbol.equals(currencyOfAmount)) {
+            finalAmount = amount;
+        } else {
+            Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(walletCurrencySymbol, currencyOfAmount);
+            finalAmount = amount.divide(price.getValue(), 2, RoundingMode.HALF_UP);
+        }
 
         if (substract) {
-            wallet.setAmount(wallet.getAmount().subtract(finalAmount));
+            BigDecimal subtract = wallet.getAmount().subtract(finalAmount);
+            if (subtract.compareTo(BigDecimal.ZERO) < 0) {
+                throw new BuyingCurrencyException(String.format("It is not possible to buy %s %s from wallet, in which is %s %s.",
+                        finalAmount.toString(), walletCurrencySymbol, wallet.getAmount().toString(), walletCurrencySymbol));
+            }
+
+            wallet.setAmount(subtract);
         } else {
             wallet.setAmount(wallet.getAmount().add(finalAmount));
         }
 
-        List<Price> prices = cryptoCurrencyDao.getPricesOfCryptocurrencyInOtherCurrencies(wallet.getCryptoCurrency().getSymbol());
+        List<Price> prices = cryptoCurrencyDao.getPricesOfCryptocurrencyInOtherCurrencies(walletCurrencySymbol);
         for (Price price1 : prices) {
             price1.setValue(price1.getValue().multiply(wallet.getAmount()));
         }

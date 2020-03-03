@@ -202,3 +202,13 @@ Wallet with ID XY successfully deleted.
     ]
   }
 }
+```
+
+## 8. Transfer values for two wallets
+
+### Request
+
+`POST /wallet/transferValues`
+
+    curl --header "Content-Type: application/json" --request POST 
+    --data '{"fromWalletId": "1","toWalletId": "2","amount": "100","currencyOfAmount": "ETH"}'       http://localhost:8080/wallet/transferValues

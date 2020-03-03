@@ -78,12 +78,10 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 `POST /wallet/`
 
-    curl --header "Content-Type: application/json" 
-    --request POST 
+    curl --header "Content-Type: application/json" --request POST 
     --data '{"name": "Bitcoin Wallet","currencySymbol": "BTC","amount": "10"}' http://localhost:8080/wallet
 
-    curl --header "Content-Type: application/json" 
-    --request POST 
+    curl --header "Content-Type: application/json" --request POST 
     --data '{"name": "Ripple Wallet","currencySymbol": "XRP","amount": "200"}' http://localhost:8080/wallet
     
 ### Response
@@ -134,3 +132,31 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 }
 ```
 
+## 3. Update wallet
+
+### Request
+
+`PUT /wallet/id`
+
+    curl --header "Content-Type: application/json" --request PUT
+    --data '{"name": "Bitcoin Wallet with new name","currencySymbol": "ETH","amount": "300"}' http://localhost:8080/wallet/1
+    
+### Response
+
+```
+{
+  "id": 0,
+  "name": "string",
+  "amount": 0,
+  "cryptoCurrency": {
+    "name": "string",
+    "symbol": "string",
+    "prices": [
+      {
+        "code": "string",
+        "value": 0
+      }
+    ]
+  }
+}
+```

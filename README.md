@@ -43,3 +43,33 @@ The REST API to the example app is described below.
   }
 ]
 ```
+
+## 2. Get all wallets
+
+### Request
+
+`GET /wallet`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/wallet
+
+### Response
+
+```
+[
+  {
+    "id": 0,
+    "name": "string",
+    "amount": 0,
+    "cryptoCurrency": {
+      "symbol": "string",    
+      "name": "string",
+      "prices": [
+        {
+          "code": "string",
+          "value": 0
+        }
+      ]
+    }
+  }
+]
+```

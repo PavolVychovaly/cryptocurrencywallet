@@ -1,13 +1,14 @@
 # CryptoCurrency Wallet Simulator API
 
-This is a simple currency wallet application providing a REST
-API that allows operations over currency wallets.
+This is a simple currency wallet application providing a REST API that allows operations over currency wallets.
 
 REST API `https://min-api.cryptocompare.com/documentation` is used for obtaining the prices and available symbols of currencies.
 
 The prices in JSON response are configurable via property `price.list` in `application.properties` file.
 
 The cryptocurrencies in JSON response of `Get All CryptoCurrencies Service` are configurable via property `cryptoCurrencySymbol.list` in `application.properties` file.
+
+On every create and update wallet, buy currency and transfer values for two wallets service is called remote REST API from `https://min-api.cryptocompare.com/documentation` to calculate prices of specified currency and they are returned in JSON response.
 
 ## Install
 

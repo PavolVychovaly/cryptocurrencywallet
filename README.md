@@ -5,6 +5,8 @@ API that allows operations over currency wallets.
 
 REST API `https://min-api.cryptocompare.com/documentation` is used for obtaining the prices and available symbols of currencies.
 
+Prices in JSON response are configurable via property `price.list` in `application.properties` file.
+
 ## Install
 
     mvn clean install -DskipTests=true

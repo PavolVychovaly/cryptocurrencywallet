@@ -30,14 +30,14 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 ```
 [
   {
+    "symbol": "string",
     "name": "string",
     "prices": [
       {
         "code": "string",
         "value": 0
       }
-    ],
-    "symbol": "string"
+    ]
   }
 ]
 ```

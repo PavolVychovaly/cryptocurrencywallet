@@ -7,6 +7,8 @@ REST API `https://min-api.cryptocompare.com/documentation` is used for obtaining
 
 The prices in JSON response are configurable via property `price.list` in `application.properties` file.
 
+The cryptocurrencies in JSON response of `Get All CryptoCurrencies Service` are configurable via property `cryptoCurrencySymbol.list` in `application.properties` file.
+
 ## Install
 
     mvn clean install -DskipTests=true

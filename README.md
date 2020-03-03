@@ -19,7 +19,7 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 The REST API to the example app is described below.
 
-## Get all cryptocurrencies with prices
+## 1. Get all cryptocurrencies with prices
 
 ### Request
 

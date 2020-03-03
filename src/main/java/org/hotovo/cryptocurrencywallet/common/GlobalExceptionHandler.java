@@ -1,6 +1,7 @@
 package org.hotovo.cryptocurrencywallet.common;
 
 import org.hotovo.cryptocurrencywallet.common.exception.BuyingCurrencyException;
+import org.hotovo.cryptocurrencywallet.common.exception.CurrencySymbolException;
 import org.hotovo.cryptocurrencywallet.common.exception.DataNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BuyingCurrencyException.class)
-    public ResponseEntity<String> handleBuyingCurrency(DataNotFoundException ex) {
+    public ResponseEntity<String> handleBuyingCurrency(BuyingCurrencyException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(CurrencySymbolException.class)
+    public ResponseEntity<String> handleCurrencySymbol(CurrencySymbolException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 }

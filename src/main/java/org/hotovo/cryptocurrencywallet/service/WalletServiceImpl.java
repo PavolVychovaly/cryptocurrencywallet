@@ -100,27 +100,32 @@ public class WalletServiceImpl implements WalletService {
             finalAmount = amount;
         } else {
             Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(walletCurrencySymbol, currencyOfAmount);
-            finalAmount = amount.divide(price.getValue(), 2, RoundingMode.HALF_UP);
+            if (price != null) {
+                finalAmount = amount.divide(price.getValue(), 2, RoundingMode.HALF_UP);
+            }
         }
 
-        if (substract) {
-            BigDecimal subtract = wallet.getAmount().subtract(finalAmount);
-            if (subtract.compareTo(BigDecimal.ZERO) < 0) {
-                throw new BuyingCurrencyException(String.format("It is not possible to buy %s %s from wallet, in which is %s %s.",
-                        finalAmount.toString(), walletCurrencySymbol, wallet.getAmount().toString(), walletCurrencySymbol));
+        // we change wallet properties in case of if finalAmount is not equal 0
+        if (finalAmount.compareTo(BigDecimal.ZERO) != 0) {
+            if (substract) {
+                BigDecimal subtract = wallet.getAmount().subtract(finalAmount);
+                if (subtract.compareTo(BigDecimal.ZERO) < 0) {
+                    throw new BuyingCurrencyException(String.format("It is not possible to buy %s %s from wallet, in which is %s %s.",
+                            finalAmount.toString(), walletCurrencySymbol, wallet.getAmount().toString(), walletCurrencySymbol));
+                }
+
+                wallet.setAmount(subtract);
+            } else {
+                wallet.setAmount(wallet.getAmount().add(finalAmount));
             }
 
-            wallet.setAmount(subtract);
-        } else {
-            wallet.setAmount(wallet.getAmount().add(finalAmount));
-        }
+            List<Price> prices = cryptoCurrencyDao.getPricesOfCryptocurrencyInOtherCurrencies(walletCurrencySymbol);
+            for (Price price1 : prices) {
+                price1.setValue(price1.getValue().multiply(wallet.getAmount()).setScale(2, BigDecimal.ROUND_HALF_UP));
+            }
 
-        List<Price> prices = cryptoCurrencyDao.getPricesOfCryptocurrencyInOtherCurrencies(walletCurrencySymbol);
-        for (Price price1 : prices) {
-            price1.setValue(price1.getValue().multiply(wallet.getAmount()));
+            wallet.getCryptoCurrency().setPrices(prices);
         }
-
-        wallet.getCryptoCurrency().setPrices(prices);
 
         return wallet;
     }

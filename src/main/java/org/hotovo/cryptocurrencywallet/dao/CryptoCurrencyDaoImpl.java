@@ -1,6 +1,7 @@
 package org.hotovo.cryptocurrencywallet.dao;
 
 import org.hotovo.cryptocurrencywallet.common.CryptoCurrencyMapUtil;
+import org.hotovo.cryptocurrencywallet.common.exception.CurrencySymbolException;
 import org.hotovo.cryptocurrencywallet.model.CryptoCurrency;
 import org.hotovo.cryptocurrencywallet.model.Price;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
     public Price getPriceOfCryptocurrencyInOtherCurrency(String currencyFirst, String currencySecond) {
         List<Price> prices = getPricesForCryptoCurrency(currencyFirst, currencySecond);
 
-        return prices.get(0);
+        return !prices.isEmpty() ? prices.get(0) : null;
     }
 
     public List<Price> getPricesForCryptoCurrency(String cryptoCurrencySymbol, String currencyCodeList) {
@@ -81,7 +82,8 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
 
             result = getPrices(priceMap);
         } catch (RestClientException e) {
-
+            String currency = currencyCodeList.contains(",") ? cryptoCurrencySymbol : currencyCodeList;
+            throw new CurrencySymbolException(String.format("The currency symbol %s does not exist in cryptocompare database.", currency));
         }
 
         return result;

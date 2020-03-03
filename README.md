@@ -174,3 +174,31 @@ Wallet with ID XY successfully deleted.
   }
 ]
 ```
+
+## 7. Buy currency from wallet
+
+### Request
+
+`POST /wallet/buyCurrency`
+
+    curl --header "Content-Type: application/json" --request POST 
+    --data '{"walletId": "1","amount": "100","currencyOfAmount": "ETH"}' http://localhost:8080/wallet/buyCurrency
+    
+### Response
+
+```
+{
+  "id": 0,
+  "name": "string",
+  "amount": 0,
+  "cryptoCurrency": {
+    "name": "string",
+    "symbol": "string",
+    "prices": [
+      {
+        "code": "string",
+        "value": 0
+      }
+    ]
+  }
+}

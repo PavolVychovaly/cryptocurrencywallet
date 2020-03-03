@@ -42,37 +42,7 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 ]
 ```
 
-## 2. Get all wallets
-
-### Request
-
-`GET /wallet`
-
-    curl -i -H 'Accept: application/json' http://localhost:8080/wallet
-
-### Response
-
-```
-[
-  {
-    "id": 0,
-    "name": "string",
-    "amount": 0,
-    "cryptoCurrency": {
-      "symbol": "string",    
-      "name": "string",
-      "prices": [
-        {
-          "code": "string",
-          "value": 0
-        }
-      ]
-    }
-  }
-]
-```
-
-## 3. Create a new wallet
+## 2. Create a new wallet
 
 ### Request
 
@@ -132,7 +102,7 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 }
 ```
 
-## 3. Update wallet
+## 4. Update wallet
 
 ### Request
 
@@ -159,4 +129,48 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
     ]
   }
 }
+```
+
+## 5. Remove wallet
+
+### Request
+
+`DELETE /wallet/id`
+
+    curl --header "Content-Type: application/json" --request DELETE http://localhost:8080/wallet/1
+    
+### Response
+
+```
+Wallet with ID XY successfully deleted.
+```
+
+## 6. Get all wallets
+
+### Request
+
+`GET /wallet`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/wallet
+
+### Response
+
+```
+[
+  {
+    "id": 0,
+    "name": "string",
+    "amount": 0,
+    "cryptoCurrency": {
+      "symbol": "string",    
+      "name": "string",
+      "prices": [
+        {
+          "code": "string",
+          "value": 0
+        }
+      ]
+    }
+  }
+]
 ```

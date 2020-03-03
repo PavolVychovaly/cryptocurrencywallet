@@ -105,3 +105,32 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
   }
 }
 ```
+
+## 3. Get wallet
+
+### Request
+
+`GET /wallet/id`
+
+    curl -i -H 'Accept: application/json' http://localhost:8080/wallet/1
+    
+### Response
+
+```
+{
+  "id": 0,
+  "name": "string",
+  "amount": 0,
+  "cryptoCurrency": {
+    "symbol": "string",
+    "name": "string",
+    "prices": [
+      {
+        "code": "string",
+        "value": 0
+      }
+    ]
+  }
+}
+```
+

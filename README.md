@@ -15,9 +15,7 @@ REST API `https://min-api.cryptocompare.com/documentation` is used for obtaining
 
 Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
-# REST API
-
-The REST API to the example app is described below.
+# REST API services
 
 ## 1. Get all cryptocurrencies with prices
 

@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
     private List<String> cryptoCurrencySymbolList;
 
     @Override
-    public List<CryptoCurrency> getAllCryptoCurrencies() {
+    public List<CryptoCurrency> getAllCryptoCurrencies(Integer page, Integer pageSize) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(cryptocurrencymultiApiUrl)
                 .queryParam("fsyms", String.join(",", cryptoCurrencySymbolList))
                 .queryParam("tsyms", String.join(",", priceList));
@@ -54,7 +55,28 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
 
         }
 
+        if (page != null && pageSize != null) {
+            result = getPage(result, page, pageSize);
+        }
+
         return result;
+    }
+
+    public static <T> List<T> getPage(List<T> sourceList, int page, int pageSize) {
+        if (pageSize <= 0 || page <= 0) {
+            throw new IllegalArgumentException("Invalid page size: " + pageSize);
+        }
+
+        if (page == 0) {
+            page = 1;
+        }
+
+        int fromIndex = (page - 1) * pageSize;
+        if (sourceList == null || sourceList.size() < fromIndex) {
+            return Collections.emptyList();
+        }
+
+        return sourceList.subList(fromIndex, Math.min(fromIndex + pageSize, sourceList.size()));
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CryptoCurrencyDao {
 
-    List<CryptoCurrency> getAllCryptoCurrencies();
+    List<CryptoCurrency> getAllCryptoCurrencies(Integer page, Integer pageSize);
 
     List<Price> getPricesOfCryptocurrencyInOtherCurrencies(String cryptoCurrencySymbol);
 

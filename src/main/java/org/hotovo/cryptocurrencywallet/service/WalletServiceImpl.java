@@ -54,7 +54,6 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Wallet update(Long id, WalletUpdateDto dto) {
-        // load wallet from static Map from Dao layer
         Wallet wallet = findById(id);
 
         if (dto.getName() != null) {

@@ -24,7 +24,7 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 ### Request
 
-It is possible to use pagination request parameters. Parameter page should start from 1. Pagination is implemented only over Java list. Remote API service for fetching all cryptocurrencies does not offer pagination.
+It is possible to use pagination request parameters. Parameter `page` should start from 1. Pagination is implemented only over Java list. Remote API service for fetching all cryptocurrencies does not offer pagination.
 
 The cryptocurrencies in JSON response are configurable via property `cryptoCurrencySymbol.list` in `application.properties` file. There are twenty cryptocurrencies.
 

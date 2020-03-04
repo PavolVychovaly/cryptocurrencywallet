@@ -65,9 +65,8 @@ public class WalletServiceImpl implements WalletService {
         }
 
         if (dto.getAmount() != null || dto.getCurrencySymbol() != null) {
-            String currency = dto.getCurrencySymbol() != null ? dto.getCurrencySymbol() : wallet.getCryptoCurrency().getSymbol();
-            CryptoCurrency cryptoCurrency = wallet.getCryptoCurrency();
-            setCurrencyAndPrices(currency, wallet.getAmount(), cryptoCurrency);
+            String cryptoCurrencySymbol = dto.getCurrencySymbol() != null ? dto.getCurrencySymbol() : wallet.getCryptoCurrency().getSymbol();
+            setCurrencyAndPrices(cryptoCurrencySymbol, wallet.getAmount(), wallet.getCryptoCurrency());
         }
 
         return wallet;

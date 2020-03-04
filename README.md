@@ -53,6 +53,14 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 `POST /wallet/`
 
+```
+{
+  "name": "Bitcoin Wallet",
+  "currencySymbol": "BTC",
+  "amount": "10"
+}
+```
+
     curl --header "Content-Type: application/json" --request POST --data '{"name": "Bitcoin Wallet","currencySymbol": "BTC","amount":   "10"}' http://localhost:8080/wallet
 
     curl --header "Content-Type: application/json" --request POST --data '{"name": "Ripple Wallet","currencySymbol": "XRP","amount": "200"}' http://localhost:8080/wallet

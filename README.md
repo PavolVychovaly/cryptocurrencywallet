@@ -26,10 +26,13 @@ Application is available via Swagger on http://localhost:8080/swagger-ui.html
 
 ### Request
 
+It is possible to use pagination request parameters. Pagination is implemented only over Java list. Remote API service for fetching all cryptocurrencies does not offer pagination.
+
 `GET /cryptocurrency`
 
     curl -i -H 'Accept: application/json' http://localhost:8080/cryptocurrency
-
+    curl -X GET "http://localhost:8080/cryptocurrency?page=1&size=5"
+    
 ### Response
 
 ```

@@ -15,8 +15,8 @@ public class TransferWalletDto {
     @NotNull(message = "Amount in wallet may not be null.")
     private BigDecimal amount;
 
-    @NotEmpty(message = "Currency symbol of amount may not be null.")
-    private String currencyOfAmount;
+    @NotEmpty(message = "Currency symbol may not be null.")
+    private String currencySymbol;
 
     public Long getFromWalletId() {
         return fromWalletId;
@@ -42,11 +42,11 @@ public class TransferWalletDto {
         this.amount = amount;
     }
 
-    public String getCurrencyOfAmount() {
-        return currencyOfAmount;
+    public String getCurrencySymbol() {
+        return currencySymbol;
     }
 
-    public void setCurrencyOfAmount(String currencyOfAmount) {
-        this.currencyOfAmount = currencyOfAmount;
+    public void setCurrencySymbol(String currencySymbol) {
+        this.currencySymbol = currencySymbol;
     }
 }

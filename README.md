@@ -211,11 +211,11 @@ You can buy 100 ETH(Ethereum) e.g. from wallet with amount 10 BTC(Bitcoin), whic
 {
   "walletId": "1",
   "amount": "100",
-  "currencyOfAmount": "ETH"
+  "currencySymbol": "ETH"
 }
 ```
 
-    curl --header "Content-Type: application/json" --request POST --data '{"walletId": "1","amount": "100","currencyOfAmount": "ETH"}' http://localhost:8080/wallet/buyCurrency
+    curl --header "Content-Type: application/json" --request POST --data '{"walletId": "1","amount": "100","currencySymbol": "ETH"}' http://localhost:8080/wallet/buyCurrency
     
 ### Response
 
@@ -248,11 +248,11 @@ You can buy 100 ETH(Ethereum) e.g. from wallet with amount 10 BTC(Bitcoin), whic
   "fromWalletId": "1",
   "toWalletId": "2",
   "amount": "100",
-  "currencyOfAmount": "ETH"
+  "currencySymbol": "ETH"
 }
 ```
 
-    curl --header "Content-Type: application/json" --request POST --data '{"fromWalletId": "1","toWalletId": "2","amount": "100","currencyOfAmount": "ETH"}' http://localhost:8080/wallet/transferValues
+    curl --header "Content-Type: application/json" --request POST --data '{"fromWalletId": "1","toWalletId": "2","amount": "100","currencySymbol": "ETH"}' http://localhost:8080/wallet/transferValues
     
 ### Response
 

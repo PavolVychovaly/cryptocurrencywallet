@@ -89,25 +89,25 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public void transferValuesBetweenTwoWallets(TransferWalletDto dto) {
-        setWalletValuesAfterBuying(dto.getFromWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), true);
-        setWalletValuesAfterBuying(dto.getToWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), false);
+        setWalletValuesAfterBuying(dto.getFromWalletId(), dto.getAmount(), dto.getCurrencySymbol(), true);
+        setWalletValuesAfterBuying(dto.getToWalletId(), dto.getAmount(), dto.getCurrencySymbol(), false);
     }
 
     @Override
     public Wallet buyCurrency(BuyCurrencyDto dto) {
-        return setWalletValuesAfterBuying(dto.getWalletId(), dto.getAmount(), dto.getCurrencyOfAmount(), true);
+        return setWalletValuesAfterBuying(dto.getWalletId(), dto.getAmount(), dto.getCurrencySymbol(), true);
     }
 
-    private Wallet setWalletValuesAfterBuying(Long walletId, BigDecimal amount, String currencyOfAmount, boolean substract) {
+    private Wallet setWalletValuesAfterBuying(Long walletId, BigDecimal amount, String currencySymbol, boolean substract) {
         Wallet wallet = findById(walletId);
         String walletCurrencySymbol = wallet.getCryptoCurrency().getSymbol();
         BigDecimal finalAmount = BigDecimal.ZERO;
 
         // in case of the cryptocurrency symbols are equal, we don't must call remote API service
-        if (substract && walletCurrencySymbol.equals(currencyOfAmount)) {
+        if (substract && walletCurrencySymbol.equals(currencySymbol)) {
             finalAmount = amount;
         } else {
-            Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(walletCurrencySymbol, currencyOfAmount);
+            Price price = cryptoCurrencyDao.getPriceOfCryptocurrencyInOtherCurrency(walletCurrencySymbol, currencySymbol);
             if (price != null) {
                 finalAmount = amount.divide(price.getValue(), 2, RoundingMode.HALF_UP);
             }

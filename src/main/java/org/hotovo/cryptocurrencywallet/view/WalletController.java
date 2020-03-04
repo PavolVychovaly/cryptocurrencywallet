@@ -48,7 +48,6 @@ public class WalletController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Wallet> update(@PathVariable("id") Long id, @Valid @RequestBody WalletDto walletDto) {
         return ResponseEntity.ok(walletService.update(id, walletDto));
     }

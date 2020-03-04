@@ -1,7 +1,5 @@
 package org.hotovo.cryptocurrencywallet.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;

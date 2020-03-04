@@ -121,6 +121,8 @@ The cryptocurrencies in JSON response are configurable via property `cryptoCurre
 
 ### Request
 
+You can update certainly one value(e.g. only name of wallet), not all three values name, amount and currencySymbol.
+
 `PUT /wallet/id`
 
 ```
@@ -199,7 +201,7 @@ Wallet with ID XY successfully deleted.
 
 ## 7. Buy currency from wallet
 
-You can buy 100 ETH(Ethereum) e.g. from wallet with amount 10 BTC(Bitcoin), which was created in step 2. It is possible use any currency, but only with amount which is not greater as amount in wallet. Bought amount is substracted from amount in wallet and the prices are calculated based on new amount. E.g. if you want to buy 1000 ETH from wallet with amount 10 BTC, it is not possible because 1000 ETH is about 25 BTC. The same process is used in Transfer values between two wallets Service API.
+You can buy 100 ETH(Ethereum) e.g. from wallet with amount 10 BTC(Bitcoin), which was created in step 2. It is possible use any currency, but only with amount which is not greater as amount in wallet(E.g. if you want to buy 1000 ETH from wallet with amount 10 BTC, it is not possible because 1000 ETH is about 25 BTC). Bought amount is substracted from amount in wallet and the prices are calculated based on new amount. The same process is used in Transfer values between two wallets Service API.
 
 ### Request
 

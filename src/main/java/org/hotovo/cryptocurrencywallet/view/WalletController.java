@@ -4,6 +4,7 @@ import org.hotovo.cryptocurrencywallet.model.Wallet;
 import org.hotovo.cryptocurrencywallet.model.dto.BuyCurrencyDto;
 import org.hotovo.cryptocurrencywallet.model.dto.TransferWalletDto;
 import org.hotovo.cryptocurrencywallet.model.dto.WalletDto;
+import org.hotovo.cryptocurrencywallet.model.dto.WalletUpdateDto;
 import org.hotovo.cryptocurrencywallet.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,8 +49,8 @@ public class WalletController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Wallet> update(@PathVariable("id") Long id, @Valid @RequestBody WalletDto walletDto) {
-        return ResponseEntity.ok(walletService.update(id, walletDto));
+    public ResponseEntity<Wallet> update(@PathVariable("id") Long id, @RequestBody WalletUpdateDto dto) {
+        return ResponseEntity.ok(walletService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

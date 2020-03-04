@@ -10,6 +10,7 @@ import org.hotovo.cryptocurrencywallet.model.Wallet;
 import org.hotovo.cryptocurrencywallet.model.dto.BuyCurrencyDto;
 import org.hotovo.cryptocurrencywallet.model.dto.TransferWalletDto;
 import org.hotovo.cryptocurrencywallet.model.dto.WalletDto;
+import org.hotovo.cryptocurrencywallet.model.dto.WalletUpdateDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,13 +53,23 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
-    public Wallet update(Long id, WalletDto walletDto) {
+    public Wallet update(Long id, WalletUpdateDto dto) {
         // load wallet from static Map from Dao layer
         Wallet wallet = findById(id);
-        BeanUtils.copyProperties(walletDto, wallet);
 
-        CryptoCurrency cryptoCurrency = wallet.getCryptoCurrency();
-        setCurrencyAndPrices(walletDto.getCurrencySymbol(), wallet.getAmount(), cryptoCurrency);
+        if (dto.getName() != null) {
+            wallet.setName(dto.getName());
+        }
+
+        if (dto.getAmount() != null) {
+            wallet.setAmount(dto.getAmount());
+        }
+
+        if (dto.getAmount() != null || dto.getCurrencySymbol() != null) {
+            String currency = dto.getCurrencySymbol() != null ? dto.getCurrencySymbol() : wallet.getCryptoCurrency().getSymbol();
+            CryptoCurrency cryptoCurrency = wallet.getCryptoCurrency();
+            setCurrencyAndPrices(currency, wallet.getAmount(), cryptoCurrency);
+        }
 
         return wallet;
     }

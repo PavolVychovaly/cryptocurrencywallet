@@ -259,5 +259,5 @@ You can buy 100 ETH(Ethereum) e.g. from wallet with amount 10 BTC(Bitcoin), whic
 Only message in this format:
 
 ```
-From wallet with ID X to wallet with ID Y was transfered 100 ETH e.g..
+From wallet with ID X to wallet with ID Y was transfered 100 ETH e.g.
 ```

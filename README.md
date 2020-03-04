@@ -31,7 +31,7 @@ It is possible to use pagination request parameters. Pagination is implemented o
 `GET /cryptocurrency`
 
     curl -i -H 'Accept: application/json' http://localhost:8080/cryptocurrency
-    curl -X GET "http://localhost:8080/cryptocurrency?page=1&size=5"
+    curl -i -H 'Accept: application/json' "http://localhost:8080/cryptocurrency?page=1&size=5"
     
 ### Response
 

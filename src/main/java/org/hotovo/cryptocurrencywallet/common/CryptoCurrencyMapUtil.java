@@ -45,7 +45,6 @@ public class CryptoCurrencyMapUtil {
         currencyMap.put("TRX", "TRON");
         currencyMap.put("HT", "Huobi Token");
         currencyMap.put("LEO", "UNUS SED LEO");
-        currencyMap.put("LEO", "UNUS SED LEO");
     }
 
     public static String getCurrencyName(String code) {

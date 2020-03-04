@@ -62,6 +62,13 @@ public class CryptoCurrencyDaoImpl implements CryptoCurrencyDao {
         return result;
     }
 
+    /**
+     * returns a view (not a new list) of the sourceList for the range based on page and pageSize
+     * @param sourceList
+     * @param page, page number should start from 1
+     * @param pageSize
+     * @return
+     */
     public static <T> List<T> getPage(List<T> sourceList, int page, int pageSize) {
         if (pageSize <= 0 || page <= 0) {
             throw new IllegalArgumentException("Invalid page size: " + pageSize);

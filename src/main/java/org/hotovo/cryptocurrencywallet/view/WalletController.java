@@ -66,7 +66,10 @@ public class WalletController {
     }
 
     @PostMapping("/transferValues")
-    public void transferValuesBetweenTwoWallets(@Valid @RequestBody TransferWalletDto dto) {
+    public ResponseEntity<String> transferValuesBetweenTwoWallets(@Valid @RequestBody TransferWalletDto dto) {
         walletService.transferValuesBetweenTwoWallets(dto);
+
+        return ResponseEntity.ok(String.format("From wallet with ID %d to wallet with ID %d was transfered %s %s.",
+                dto.getFromWalletId(), dto.getToWalletId(), dto.getAmount(), dto.getCurrencyOfAmount()));
     }
 }

@@ -121,6 +121,8 @@ The cryptocurrencies in JSON response are configurable via property `cryptoCurre
 
 ### Request
 
+You can update certainly one value(e.g. only name of wallet), not all three values name, amount and currencySymbol.
+
 `PUT /wallet/id`
 
 ```
